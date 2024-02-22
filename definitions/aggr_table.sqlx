@@ -1,0 +1,8 @@
+config {
+    type: "table"
+}
+
+SELECT SUM(value) AS total_value, Artist, Format_category, Released as Release_Year
+FROM ${ref('record_collection_cleansed')}
+GROUP BY Artist, Format_category, Released
+ORDER BY Released
