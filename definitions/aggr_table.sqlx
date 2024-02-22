@@ -1,0 +1,10 @@
+config {
+    type: "table",
+    description: "Aggregation of value"
+}
+
+SELECT SUM(value) as total_value,Format_category
+FROM `myprojectbq-328820.discogs_db.record_collection_cleansed`
+GROUP BY Format_category
+
+
