@@ -1,0 +1,13 @@
+config {
+    type: "view",
+    tags: ["view"],
+    schema: "record_collection_transformed"
+}
+
+SELECT 
+    stats_community_in_wantlist,
+    stats_community_in_collection,
+    artist, 
+    CAST(year AS STRING) AS Release_Year, 
+    format_category
+FROM ${ref('top_artists_discography')}

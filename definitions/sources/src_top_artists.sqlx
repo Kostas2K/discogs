@@ -1,0 +1,5 @@
+config {
+    type: "declaration",
+    schema: "discogs_db",
+    name: "top_artists_discography",
+}

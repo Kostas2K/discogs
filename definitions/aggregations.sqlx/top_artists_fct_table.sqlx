@@ -1,0 +1,14 @@
+config {
+    type: "view",
+    tags: ["view"],
+    schema: "record_collection_transformed"
+}
+
+SELECT 
+    SUM(stats_community_in_wantlist) AS total_wantlist,
+    SUM(stats_community_in_collection) AS total_collection,
+    artist, 
+    Release_Year, 
+    format_category
+FROM ${ref('top_artists_cleansed')}
+GROUP BY artist, Release_Year, format_category
