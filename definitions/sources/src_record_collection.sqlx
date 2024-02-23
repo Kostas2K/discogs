@@ -1,0 +1,5 @@
+config {
+    type: "declaration",
+    schema: "discogs_db",
+    name: "src_record_collection"
+}

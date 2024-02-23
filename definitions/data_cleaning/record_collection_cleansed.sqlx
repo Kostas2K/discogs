@@ -1,0 +1,14 @@
+config { 
+    type: "view",
+    tags:["view"],
+    schema: "record_collection_transformed" 
+
+}
+
+
+with main_connection AS (
+SELECT * from ${ref("src_record_collection")}
+)
+
+SELECT * EXCEPT(Label1, Label2, Same_label)
+FROM main_connection
