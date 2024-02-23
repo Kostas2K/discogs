@@ -1,0 +1,13 @@
+config {
+    type: "view",
+    tags: ["view"],
+    schema: "record_collection_transformed" 
+}
+
+    SELECT 
+    SUM(Total_Order_Amount) AS total_selling_value, 
+    CASE WHEN item_type='Vinyl' THEN 'LP' 
+    WHEN item_type='CD' THEN 'CD' ELSE 'Other Type'
+    END AS format_category
+    FROM ${ref('statement')}
+    GROUP BY item_type
