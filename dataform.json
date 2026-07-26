@@ -1,0 +1,8 @@
+{
+  "defaultSchema": "discogs_db",
+  "assertionSchema": "dataform_assertions",
+  "warehouse": "bigquery",
+  "defaultDatabase": "myprojectbq-328820",
+  "defaultLocation": "US"
+}
+    

@@ -1,0 +1,12 @@
+config {
+    type: "view"
+}
+
+SELECT *,
+CASE WHEN 
+total_value>=${constants.low_value} and total_value<${constants.medium_value} THEN "low_value"
+WHEN total_value>=${constants.medium_value} and total_value<${constants.high_value} THEN "medium_value"
+WHEN total_value>=${constants.high_value} THEN "high_value" ELSE "Other"
+END AS Segments_value
+FROM ${ref('aggr_table')}
+

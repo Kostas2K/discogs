@@ -1,0 +1,33 @@
+config {
+    type: "table",
+    description: "Comparing collection to inventory and sold value"
+}
+
+with record_collection AS (
+SELECT sum(total_value)/count(*) AS total_record_value, Format_category
+FROM ${ref('aggr_table')}
+GROUP BY Format_category
+),
+
+inventory AS (
+    SELECT SUM(price)/count(*) as total_inventory_value, music_format as Format_category
+    FROM `myprojectbq-328820.discogs_db.music_inventory`
+    GROUP BY music_format
+),
+
+sold_records AS (
+    SELECT SUM(Total_Order_Amount)/count(*) as total_selling_value, 
+    CASE WHEN item_type='Vinyl' THEN 'LP' END AS format_category
+    FROM `myprojectbq-328820.discogs_db.statement`
+    GROUP BY item_type
+)
+
+SELECT rc.format_category,total_record_value,total_inventory_value,total_selling_value
+FROM record_collection AS rc
+INNER JOIN inventory as i
+USING(format_category)
+INNER JOIN sold_records
+USING(format_category)
+
+
+
